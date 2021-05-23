@@ -29,6 +29,7 @@ def login():
     if session.get('bloqueadoSeg') is None:
         print("bloqueadoSeg is none")
         session['bloqueadoSeg'] = 99
+        session['attempt'] = 3
     else:
         print(session['bloqueadoSeg'])
         print(pasa_flask)
