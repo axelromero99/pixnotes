@@ -1,0 +1,119 @@
+{% extends "base.html" %} {% block title %}Login{% endblock %} {% block content %}
+<form method="POST">
+    <h3 align="center" class="mt-5">Login</h3>
+    <div class="form-group">
+        <label for="email">Email Address</label>
+        <input type="email" class="form-control nes-input" id="email" name="email" placeholder="Enter email" />
+    </div>
+    <div class="form-group">
+        <label for="password">Password</label>
+        <input type="password" class="form-control nes-input" id="password" name="password" placeholder="Enter password" />
+    </div>
+
+    <br />
+
+    <section class="mb-5">
+        {% if heart
+        <=0 %} <button class="nes-btn is-disabled d-inline" disabled>Login</button>
+            {% else %}
+            <button type="submit" class="nes-btn is-primary d-inline">Login</button> {% endif %}
+            <div class="lives d-inline">
+                {% if heart == 3 %}
+                <i class="nes-icon is-medium heart"></i>
+                <i class="nes-icon is-medium heart"></i>
+                <i class="nes-icon is-medium heart"></i> {% elif heart == 2 %}
+                <i class="nes-icon is-medium heart"></i>
+                <i class="nes-icon is-medium heart"></i>
+                <i class="nes-icon is-medium is-transparent heart"></i> {% elif heart == 1%}
+                <i class="nes-icon is-medium heart"></i>
+                <i class="nes-icon is-medium is-transparent heart"></i>
+                <i class="nes-icon is-medium is-transparent heart"></i> {% else %}
+                <i class="nes-icon is-medium is-transparent heart"></i>
+                <i class="nes-icon is-medium is-transparent heart"></i>
+                <i class="nes-icon is-medium is-transparent heart"></i> {% endif %}
+            </div>
+            <div class="counter d-inline" id="time"></div>
+    </section>
+
+</form>
+
+<script src="https://code.jquery.com/jquery-3.1.0.min.js"></script>
+
+
+<script type="text/javascript">
+    let clientIp = '{{clientIp}}'
+    let pasa = '{{pasa}}'
+
+    console.log("pasa:", pasa)
+    console.log("sended from flask:", clientIp)
+
+    if (pasa == "pasa") {
+        console.log("dummos")
+    } else if (pasa == "bloqueado") {
+
+        var fiveMinutes = 5,
+            display = document.querySelector('#time');
+        startTimer(fiveMinutes, display);
+    }
+
+
+    function startTimer(duration, display) {
+        var timer = duration,
+            minutes, seconds;
+        const interval = setInterval(function() {
+            minutes = parseInt(timer / 60, 10);
+            seconds = parseInt(timer % 60, 10);
+
+            minutes = minutes < 10 ? "0" + minutes : minutes;
+            seconds = seconds < 10 ? "0" + seconds : seconds;
+
+            display.textContent = minutes + ":" + seconds;
+            var termino = timer
+
+            if (--timer < -1) {
+                timer = duration;
+            }
+
+            console.log("enviado post jquery NO")
+            $.ajax({
+                type: 'POST',
+                url: '/login',
+                data: JSON.stringify(termino),
+                success: function(data) {
+                    alert('data: ' + data);
+                },
+                contentType: "application/json",
+                dataType: 'json'
+            });
+
+            if (timer == -1) {
+                clearInterval(interval); // time is up
+                termino = "si"
+                console.log("enviado post jquery SI")
+                $.ajax({
+                    type: 'POST',
+                    url: '/login',
+                    data: JSON.stringify(termino),
+                    success: function(data) {
+                        alert('data: ' + data);
+                    },
+                    contentType: "application/json",
+                    dataType: 'json'
+                });
+
+                setTimeout(() => {
+                    location.reload();
+                }, 1000);
+
+            }
+        }, 1000);
+    }
+
+    // montar el flask en un entorno no local de testing, posiblemente gunicorn o nginx
+    // hacer una consulta de la ip actual, si coincide con la que esta en la blacklist, empezar el contador
+    // una vez que llegue a 0, enviar informacion al backend para darle los 3 intentos devuelta a la ip y sacarla de la blacklist
+    // vaciar el hashmap  cada x tiempo
+    //
+</script>
+
+{% endblock %}

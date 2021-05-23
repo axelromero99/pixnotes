@@ -1,0 +1,14 @@
+html, body, pre, code, kbd, samp {
+    font-family: 'Press Start 2P', cursive;
+}
+
+.image-pixelated{
+    image-rendering: pixelated;
+    width: 20px;
+    margin-bottom: 6px;
+    margin-right: 4px;
+}
+
+.heart{
+    margin-bottom: 15px!important;
+}
