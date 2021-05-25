@@ -24,9 +24,10 @@ samp {
     margin-right: auto;
     left: 0;
     right: 0;
-    top: 20px;
+    top: -17px;
     width: 100px;
     height: 100px;
+    z-index: 999;
 }
 
 .nav-link {
