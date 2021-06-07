@@ -6,7 +6,10 @@
 
 </h1>
 
-Python Web Application for taking notes, with login/register system and user bann for 5 seconds after 3 attempts of login. Styled with Bootstrap and NES.css framework. I took the base of the project from a flask tutorial, and then personalize it with the framework and other functionalities that i've made.
+Python Web Application for taking notes, with login/register system and user bann for 5 seconds after 3 attempts of login. Styled with Bootstrap and NES.css framework.
+
+You will be able to create an user, login, write notes and delete them. You notes will be conservated in the SQL database.
+
 
 ### Live Demos 
 * [Pixnotes](https://pixnotes.herokuapp.com/login?next=%2F)
@@ -14,6 +17,7 @@ Python Web Application for taking notes, with login/register system and user ban
 ### Features 📋
 * Flask backend and SQLAlchemy database for a register/login system
 * Login with 3 attempts and bann for 5 seconds
+* Saves the notes in a SQL database
 * Use of NES.css framework and Bootstrap for styling
 
 ### Developed with 🛠️
