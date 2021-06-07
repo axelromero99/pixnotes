@@ -20,7 +20,6 @@ Python Web Application for taking notes, with login/register system and user ban
 
 * [Flask](https://flask.palletsprojects.com/en/2.0.x/)
 * [SQLAlchemy](https://www.sqlalchemy.org/)
-* [DOMPurify](https://github.com/cure53/DOMPurify) - For sanitisize HTML
 
 ## Starting 🚀
 
