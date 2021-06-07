@@ -8,7 +8,7 @@
 
 Python Web Application for taking notes, with login/register system and user bann for 5 seconds after 3 attempts of login. Styled with Bootstrap and NES.css framework.
 
-You will be able to create an user, login, write notes and delete them. You notes will be conservated in the SQL database.
+You will be able to create an user, login, write notes and delete them. Your notes will be conserved in the SQL database.
 
 
 ### Live Demos 
